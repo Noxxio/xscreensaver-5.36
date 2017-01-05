@@ -50,9 +50,9 @@
 #define countof(x) (sizeof((x))/sizeof((*x)))
 
 enum {
-  N_CHANNELS=12, /* Channels 2 through 13 on VHF */
+  N_CHANNELS=280, /* Channels 2 through 13 on VHF */
   MAX_MULTICHAN=2,
-  MAX_STATIONS=6
+  MAX_STATIONS=140
 }; 
 
 typedef struct chansetting_s {
@@ -163,14 +163,14 @@ update_smpte_colorbars(analogtv_input *input)
                                            space is provided" */
       localname[24]=0; /* limit length */
 
-      analogtv_draw_string_centered(input, &st->ugly_font, localname,
-                                    xpos, ypos, black_ntsc);
+      /* analogtv_draw_string_centered(input, &st->ugly_font, localname,
+                                    xpos, ypos, black_ntsc); */
     }
   }
   ypos += st->ugly_font.char_h*5/2;
 
-  analogtv_draw_xpm(st->tv, input,
-                    logo_50_xpm, xpos - 100, ypos);
+  /* analogtv_draw_xpm(st->tv, input,
+                    logo_50_xpm, xpos - 100, ypos); */
 
   ypos += 58;
 
@@ -187,9 +187,9 @@ update_smpte_colorbars(analogtv_input *input)
 
     /* Y2K: It is OK for this to use a 2-digit year because it's simulating a
        TV display and is purely decorative. */
-    strftime(timestamp, sizeof(timestamp)-1, "%y.%m.%d %H:%M:%S ", tm);
-    analogtv_draw_string_centered(input, &st->ugly_font, timestamp,
-                                  xpos, ypos, black_ntsc);
+    strftime(timestamp, sizeof(timestamp)-1, "%H:%M:%S ", tm);
+    /* analogtv_draw_string_centered(input, &st->ugly_font, timestamp,
+                                  xpos, ypos, black_ntsc); */
   }
 
   
@@ -235,9 +235,9 @@ draw_color_square(analogtv_input *input)
 #endif
 
 static const char *xanalogtv_defaults [] = {
-  ".background:	        black",
-  ".foreground:	        white",
-  "*delay:	        5",
+  ".background:         black",
+  ".foreground:         white",
+  "*delay:          5",
   "*grabDesktopImages:  False",   /* HAVE_JWXYZ */
   "*chooseRandomImages: True",    /* HAVE_JWXYZ */
   ANALOGTV_DEFAULTS
@@ -245,7 +245,7 @@ static const char *xanalogtv_defaults [] = {
 };
 
 static XrmOptionDescRec xanalogtv_options [] = {
-  { "-delay",		".delay",		XrmoptionSepArg, 0 },
+  { "-delay",       ".delay",       XrmoptionSepArg, 0 },
   ANALOGTV_OPTIONS
   { 0, 0, 0, 0 }
 };
